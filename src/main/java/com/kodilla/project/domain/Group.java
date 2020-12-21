@@ -32,4 +32,9 @@ public class Group {
             cascade = CascadeType.ALL
     )
     private List<Offer> offers = new ArrayList<>();
+
+    public Group (Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
