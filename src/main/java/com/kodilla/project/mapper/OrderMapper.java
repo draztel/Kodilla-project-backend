@@ -13,6 +13,8 @@ public class OrderMapper {
     public Order mapToOrder(final OrderDto orderDto) {
         return new Order(
                 orderDto.getId(),
+                orderDto.getFrom(),
+                orderDto.getTo(),
                 orderDto.getUser(),
                 orderDto.getOffer()
         );
@@ -21,6 +23,8 @@ public class OrderMapper {
     public OrderDto mapToOrderDto(final Order order) {
         return new OrderDto(
                 order.getId(),
+                order.getFrom(),
+                order.getTo(),
                 order.getUser(),
                 order.getOffer()
         );
