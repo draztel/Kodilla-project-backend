@@ -42,4 +42,54 @@ public class Offer {
         this.description = description;
         this.price = price;
     }
+
+    public static final class Builder {
+        private Long id;
+        private String name;
+        private String description;
+        private double price;
+        private Group group;
+        private Order order;
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder price(double price) {
+            this.price = price;
+            return this;
+        }
+
+        public Builder group(Group group) {
+            this.group = group;
+            return this;
+        }
+
+        public Builder order(Order order) {
+            this.order = order;
+            return this;
+        }
+
+        public Offer build() {
+            Offer offer = new Offer();
+            offer.id = this.id;
+            offer.name = this.name;
+            offer.description = this.description;
+            offer.price = this.price;
+            offer.group = this.group;
+            offer.order = this.order;
+            return offer;
+        }
+    }
 }

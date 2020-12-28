@@ -1,14 +1,12 @@
 package com.kodilla.project.controller;
 
 import com.kodilla.project.domain.dto.OfferDto;
-import com.kodilla.project.exception.AlreadyExistsException;
 import com.kodilla.project.exception.NotFoundException;
 import com.kodilla.project.mapper.OfferMapper;
 import com.kodilla.project.service.OfferDbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;

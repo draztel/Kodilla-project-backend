@@ -1,7 +1,6 @@
 package com.kodilla.project.service;
 
 import com.kodilla.project.domain.Offer;
-import com.kodilla.project.exception.AlreadyExistsException;
 import com.kodilla.project.repository.OfferDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +23,14 @@ public class OfferDbService {
     }
 
     public Offer saveOffer(final Offer offer) {
-            return offerDao.save(offer);
+            return offerDao.save(new Offer.Builder()
+            .id(offer.getId())
+            .name(offer.getName())
+            .description(offer.getDescription())
+            .price(offer.getPrice())
+            .group(offer.getGroup())
+            .order(offer.getOrder())
+            .build());
     }
 
     public void deleteOffer(final Long id) {

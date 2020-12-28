@@ -1,12 +1,13 @@
 package com.kodilla.project.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,11 +23,12 @@ public class Order {
     private Long id;
 
     @Column(name = "DATE_FROM")
-    private LocalDate from;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private Date from;
 
     @Column(name = "DATE_TO")
-    private LocalDate to;
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private Date to;
 
     @OneToOne(mappedBy = "order")
     private User user;
