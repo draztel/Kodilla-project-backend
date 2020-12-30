@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -24,11 +25,11 @@ public class Order {
 
     @Column(name = "DATE_FROM")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date from;
+    private LocalDate from;
 
     @Column(name = "DATE_TO")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date to;
+    private LocalDate to;
 
     @OneToOne(mappedBy = "order")
     private User user;

@@ -3,10 +3,12 @@ package com.kodilla.project.domain;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
+@NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
@@ -30,6 +32,8 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "ORDER_ID")
     private Order order;
+
+    private boolean isLogged;
 
     public User(Long id, String username, String password) {
         this.id = id;
