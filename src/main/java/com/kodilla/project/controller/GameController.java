@@ -26,12 +26,12 @@ public class GameController {
         return gameMapper.mapToGameDtoList(service.getGames());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/games/{gameName}")
+    @RequestMapping(method = RequestMethod.GET, value = "/games/getByName/{gameName}")
     public List<GameDto> getGamesByName(@PathVariable String gameName) {
         return gameMapper.mapToGameDtoList(service.getGamesByName(gameName));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/games/{gameId}")
+    @RequestMapping(method = RequestMethod.GET, value = "/games/getById/{gameId}")
     public GameDto getGame(@PathVariable Long gameId) throws NotFoundException {
         return gameMapper.mapToGameDto(service.getGame(gameId).orElseThrow(NotFoundException::new));
     }

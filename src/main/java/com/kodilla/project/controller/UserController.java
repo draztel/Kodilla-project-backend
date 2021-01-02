@@ -28,12 +28,12 @@ public class UserController {
         return userMapper.mapToUserDtoList(service.getUsers());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/users/{userFirstname}")
+    @RequestMapping(method = RequestMethod.GET, value = "/users/getByName/{userFirstname}")
     public List<UserDto> getUsersByFirstname(@PathVariable String userFirstname) {
         return userMapper.mapToUserDtoList(service.getUsersByFirstname(userFirstname));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/users/{userId}")
+    @RequestMapping(method = RequestMethod.GET, value = "/users/getById/{userId}")
     public UserDto getUser(@PathVariable Long userId) throws NotFoundException {
        return userMapper.mapToUserDto(service.getUser(userId).orElseThrow(NotFoundException::new));
     }

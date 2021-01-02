@@ -26,12 +26,12 @@ public class OfferController {
         return offerMapper.mapToOfferDtoList(offerDbService.getOffers());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/offers/{offerName}")
+    @RequestMapping(method = RequestMethod.GET, value = "/offers/getByName/{offerName}")
     public List<OfferDto> getOffersByName(@PathVariable String offerName) {
         return offerMapper.mapToOfferDtoList(offerDbService.getOffersByName(offerName));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/offers/{offerId}")
+    @RequestMapping(method = RequestMethod.GET, value = "/offers/getById/{offerId}")
     public OfferDto getOffer(@PathVariable Long offerId) throws NotFoundException {
         return offerMapper.mapToOfferDto(offerDbService.getOffer(offerId).orElseThrow(NotFoundException::new));
     }

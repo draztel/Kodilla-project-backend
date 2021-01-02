@@ -26,12 +26,12 @@ public class MovieController {
         return movieMapper.mapToMovieDtoList(service.getMovies());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/movies/{movieName}")
+    @RequestMapping(method = RequestMethod.GET, value = "/movies/getByName/{movieName}")
     public List<MovieDto> getMoviesByName(@PathVariable String movieName) {
         return movieMapper.mapToMovieDtoList(service.getMoviesByName(movieName));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/movies/{movieId}")
+    @RequestMapping(method = RequestMethod.GET, value = "/movies/getById/{movieId}")
     public MovieDto getMovie(@PathVariable Long movieId) throws NotFoundException {
         return movieMapper.mapToMovieDto(service.getMovie(movieId).orElseThrow(NotFoundException::new));
     }

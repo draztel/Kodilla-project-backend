@@ -70,7 +70,7 @@ public class UserControllerTest {
         when(mapper.mapToUserDto(user)).thenReturn(userDto);
 
         //then & when
-        mockMvc.perform(get("/v1/users/1")
+        mockMvc.perform(get("/v1/users/getById/1")
         .contentType(MediaType.APPLICATION_JSON)
         .characterEncoding("UTF-8"))
                 .andExpect(status().isOk())
