@@ -40,14 +40,14 @@ public class UserControllerTest {
     public void shouldGetAllUsers() throws Exception {
         //given
         List<UserDto> userDtoList = new ArrayList<>();
-        final UserDto userDto1 = new UserDto(1l, "username", "password");
-        final UserDto userDto2 = new UserDto(1l, "username", "password");
+        final UserDto userDto1 = new UserDto(1l, "firstname", "lastname");
+        final UserDto userDto2 = new UserDto(1l, "firstname", "lastname");
         userDtoList.add(userDto1);
         userDtoList.add(userDto2);
 
         List<User> userList = new ArrayList<>();
-        final User user1 = new User(1l, "username", "password");
-        final User user2 = new User(1l, "username", "password");
+        final User user1 = new User(1l, "firstname", "lastname");
+        final User user2 = new User(1l, "firstname", "lastname");
         userList.add(user1);
         userList.add(user2);
 
@@ -63,8 +63,8 @@ public class UserControllerTest {
     @Test
     public void shouldGetUser() throws Exception {
         //given
-        final UserDto userDto = new UserDto(1l, "username", "password");
-        final User user = new User(1l, "username", "password");
+        final UserDto userDto = new UserDto(1l, "firstname", "lastname");
+        final User user = new User(1l, "firstname", "lastname");
 
         when(service.getUser(anyLong())).thenReturn(Optional.of(user));
         when(mapper.mapToUserDto(user)).thenReturn(userDto);
@@ -75,8 +75,8 @@ public class UserControllerTest {
         .characterEncoding("UTF-8"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(1)))
-                .andExpect(jsonPath("$.username", is("username")))
-                .andExpect(jsonPath("$.password", is("password")));
+                .andExpect(jsonPath("$.firstname", is("firstname")))
+                .andExpect(jsonPath("$.lastname", is("lastname")));
     }
 
     @Test
@@ -90,8 +90,8 @@ public class UserControllerTest {
     @Test
     public void shouldCreateUser() throws Exception {
         //given
-        final UserDto userDto = new UserDto(1l, "username", "password");
-        final User user = new User(1l, "username", "password");
+        final UserDto userDto = new UserDto(1l, "firstname", "lastname");
+        final User user = new User(1l, "firstname", "lastname");
 
         when(mapper.mapToUser(userDto)).thenReturn(user);
         when(service.saveUser(user)).thenReturn(user);
@@ -110,8 +110,8 @@ public class UserControllerTest {
     @Test
     public void shouldUpdateUser() throws Exception {
         //given
-        final UserDto userDto = new UserDto(1l, "username", "password");
-        final User user = new User(1l, "username", "password");
+        final UserDto userDto = new UserDto(1l, "firstname", "lastname");
+        final User user = new User(1l, "firstname", "lastname");
 
         when(mapper.mapToUser(userDto)).thenReturn(user);
         when(service.saveUser(user)).thenReturn(user);

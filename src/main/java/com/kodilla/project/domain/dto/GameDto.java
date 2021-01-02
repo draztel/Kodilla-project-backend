@@ -11,10 +11,15 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderDto {
+public class GameDto {
     private Long id;
-    private LocalDate from;
-    private LocalDate to;
-    private User user;
-    private Offer offer;
+    private String name;
+    private String description;
+    private double price;
+
+    public GameDto(String name, String description, double price) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
 }

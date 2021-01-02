@@ -7,15 +7,15 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class OfferDto {
+public class MovieDto {
     private Long id;
     private String name;
     private String description;
-    private double price;
+    private String author;
 
-    public OfferDto(String name, String description, double price) {
+    public MovieDto(String name, String description, String author) {
         this.name = name;
         this.description = description;
-        this.price = price;
+        this.author = author;
     }
 }

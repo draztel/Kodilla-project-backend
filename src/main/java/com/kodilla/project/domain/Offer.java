@@ -29,15 +29,7 @@ public class Offer {
     @Column(name = "OFFER_PRICE")
     private double price;
 
-    @ManyToOne
-    @JoinColumn(name = "GROUP_ID")
-    private Group group;
-
-    @OneToOne(mappedBy = "offer")
-    private Order order;
-
-    public Offer(Long id, String name, String description, double price) {
-        this.id = id;
+    public Offer(String name, String description, double price) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -48,8 +40,6 @@ public class Offer {
         private String name;
         private String description;
         private double price;
-        private Group group;
-        private Order order;
 
         public Builder id(Long id) {
             this.id = id;
@@ -71,24 +61,12 @@ public class Offer {
             return this;
         }
 
-        public Builder group(Group group) {
-            this.group = group;
-            return this;
-        }
-
-        public Builder order(Order order) {
-            this.order = order;
-            return this;
-        }
-
         public Offer build() {
             Offer offer = new Offer();
             offer.id = this.id;
             offer.name = this.name;
             offer.description = this.description;
             offer.price = this.price;
-            offer.group = this.group;
-            offer.order = this.order;
             return offer;
         }
     }

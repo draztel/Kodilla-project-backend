@@ -17,4 +17,6 @@ public interface OfferDao extends CrudRepository<Offer, Long> {
 
     @Override
     Optional<Offer> findById(Long id);
+
+    List<Offer> findByName(String name);
 }

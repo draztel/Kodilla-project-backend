@@ -17,6 +17,10 @@ public class UserDbService {
         return userDao.findAll();
     }
 
+    public List<User> getUsersByFirstname(String firstname) {
+        return userDao.findByFirstname(firstname);
+    }
+
     public Optional<User> getUser(final Long id) {
        return userDao.findById(id);
     }

@@ -17,4 +17,6 @@ public interface UserDao extends CrudRepository<User, Long> {
 
     @Override
     Optional<User> findById(Long id);
+
+    List<User> findByFirstname(String firstname);
 }

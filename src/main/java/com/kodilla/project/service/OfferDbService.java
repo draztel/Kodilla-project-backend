@@ -18,6 +18,10 @@ public class OfferDbService {
         return offerDao.findAll();
     }
 
+    public List<Offer> getOffersByName(String name) {
+        return offerDao.findByName(name);
+    }
+
     public Optional<Offer> getOffer(final Long id) {
         return offerDao.findById(id);
     }
@@ -28,8 +32,6 @@ public class OfferDbService {
             .name(offer.getName())
             .description(offer.getDescription())
             .price(offer.getPrice())
-            .group(offer.getGroup())
-            .order(offer.getOrder())
             .build());
     }
 

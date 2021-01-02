@@ -22,22 +22,15 @@ public class User {
     private Long id;
 
     @NotNull
-    @Column(name = "USERNAME", unique = true)
-    private String username;
+    @Column(name = "USER_FIRSTNAME")
+    private String firstname;
 
     @NotNull
-    @Column(name = "PASSWORD")
-    private String password;
+    @Column(name = "USER_LASTNAME")
+    private String lastname;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "ORDER_ID")
-    private Order order;
-
-    private boolean isLogged;
-
-    public User(Long id, String username, String password) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
+    public User(String firstname, String lastname) {
+        this.firstname = firstname;
+        this.lastname = lastname;
     }
 }
