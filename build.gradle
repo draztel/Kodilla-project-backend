@@ -26,6 +26,7 @@ dependencies {
     implementation 'junit:junit:4.12'
     compile('com.google.code.gson:gson:2.8.6')
     compile('mysql:mysql-connector-java')
+    compile 'com.squareup.okhttp:okhttp:2.7.5'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
