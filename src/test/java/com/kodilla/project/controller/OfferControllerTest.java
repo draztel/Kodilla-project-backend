@@ -79,7 +79,7 @@ public class OfferControllerTest {
         when(mapper.mapToOfferDto(offer)).thenReturn(offerDto);
 
         //when & then
-        mockMvc.perform(get("/v1/offers/1")
+        mockMvc.perform(get("/v1/offers/getById/1")
         .contentType(MediaType.APPLICATION_JSON)
         .characterEncoding("UTF-8"))
                 .andExpect(status().isOk())

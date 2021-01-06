@@ -15,9 +15,6 @@ import java.io.IOException;
 public class FactClient {
 
     @Autowired
-    private RestTemplate restTemplate;
-
-    @Autowired
     private FactConfiguration configuration;
 
     public FactDto getRandomFact() throws IOException {
