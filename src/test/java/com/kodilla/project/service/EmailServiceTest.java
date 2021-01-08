@@ -13,10 +13,10 @@ import org.springframework.mail.javamail.JavaMailSender;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class SimpleEmailServiceTest {
+public class EmailServiceTest {
 
     @InjectMocks
-    private SimpleEmailService simpleEmailService;
+    private EmailService emailService;
 
     @Mock
     private JavaMailSender javaMailSender;
@@ -31,7 +31,7 @@ public class SimpleEmailServiceTest {
         mailMessage.setText(mail.getMessage());
 
         //When
-        simpleEmailService.send(mail);
+        emailService.send(mail);
 
         //Then
         verify(javaMailSender, times(1)).send(mailMessage);

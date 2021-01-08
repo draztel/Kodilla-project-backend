@@ -10,7 +10,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Setter
 @Entity
 @Table(name = "OFFERS")
 public class Offer {
@@ -28,12 +27,6 @@ public class Offer {
 
     @Column(name = "OFFER_PRICE")
     private double price;
-
-    public Offer(String name, String description, double price) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-    }
 
     public static final class Builder {
         private Long id;

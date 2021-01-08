@@ -13,6 +13,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FactDto {
-    @JsonProperty("fact")
-    private String fact;
+    @JsonProperty("text")
+    private String text;
 }

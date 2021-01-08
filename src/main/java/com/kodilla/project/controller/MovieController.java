@@ -13,7 +13,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/v1/movie")
 public class MovieController {
     @Autowired
     private MovieDbService service;
@@ -21,32 +21,32 @@ public class MovieController {
     @Autowired
     private MovieMapper movieMapper;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/movies")
+    @RequestMapping(method = RequestMethod.GET)
     public List<MovieDto> getMovies() {
         return movieMapper.mapToMovieDtoList(service.getMovies());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/movies/getByName/{movieName}")
+    @RequestMapping(method = RequestMethod.GET, value = "/name/{movieName}")
     public List<MovieDto> getMoviesByName(@PathVariable String movieName) {
         return movieMapper.mapToMovieDtoList(service.getMoviesByName(movieName));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/movies/getById/{movieId}")
+    @RequestMapping(method = RequestMethod.GET, value = "/id/{movieId}")
     public MovieDto getMovie(@PathVariable Long movieId) throws NotFoundException {
         return movieMapper.mapToMovieDto(service.getMovie(movieId).orElseThrow(NotFoundException::new));
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/movies/{movieId}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{movieId}")
     public void deleteMovie(@PathVariable Long movieId) {
         service.deleteMovie(movieId);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/movies")
+    @RequestMapping(method = RequestMethod.PUT)
     public MovieDto updateMovie(@RequestBody MovieDto movieDto) {
         return movieMapper.mapToMovieDto(service.saveMovie(movieMapper.mapToMovie(movieDto)));
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/movies", consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, consumes = APPLICATION_JSON_VALUE)
     public void createMovie(@RequestBody MovieDto movieDto) {
         service.saveMovie(movieMapper.mapToMovie(movieDto));
     }

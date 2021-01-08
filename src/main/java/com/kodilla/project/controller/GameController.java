@@ -13,7 +13,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/v1/game")
 public class GameController {
     @Autowired
     private GameMapper gameMapper;
@@ -21,32 +21,32 @@ public class GameController {
     @Autowired
     private GameDbService service;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/games")
+    @RequestMapping(method = RequestMethod.GET)
     public List<GameDto> getGames() {
         return gameMapper.mapToGameDtoList(service.getGames());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/games/getByName/{gameName}")
+    @RequestMapping(method = RequestMethod.GET, value = "/name/{gameName}")
     public List<GameDto> getGamesByName(@PathVariable String gameName) {
         return gameMapper.mapToGameDtoList(service.getGamesByName(gameName));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/games/getById/{gameId}")
+    @RequestMapping(method = RequestMethod.GET, value = "/id/{gameId}")
     public GameDto getGame(@PathVariable Long gameId) throws NotFoundException {
         return gameMapper.mapToGameDto(service.getGame(gameId).orElseThrow(NotFoundException::new));
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/games/{gameId}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{gameId}")
     public void deleteGame(@PathVariable Long gameId) {
         service.deleteGame(gameId);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/games")
+    @RequestMapping(method = RequestMethod.PUT)
     public GameDto updateGame(@RequestBody GameDto gameDto) {
         return gameMapper.mapToGameDto(service.saveGame(gameMapper.mapToGame(gameDto)));
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/games", consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, consumes = APPLICATION_JSON_VALUE)
     public void createGame(@RequestBody GameDto gameDto) {
         service.saveGame(gameMapper.mapToGame(gameDto));
     }

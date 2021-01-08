@@ -4,10 +4,8 @@ import com.kodilla.project.config.FactConfiguration;
 import com.kodilla.project.domain.dto.FactDto;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 
@@ -28,8 +26,8 @@ public class FactClient {
                 .build();
 
         FactDto factDto = new FactDto();
-        factDto.setFact(client.newCall(request).execute().body().string());
-        factDto.setFact(factDto.getFact().substring(9, factDto.getFact().length() - 2));
+        factDto.setText(client.newCall(request).execute().body().string());
+        factDto.setText(factDto.getText().substring(9, factDto.getText().length() - 2));
         return factDto;
     }
 }

@@ -14,7 +14,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/v1/user")
 public class UserController {
     @Autowired
     private UserMapper userMapper;
@@ -23,32 +23,32 @@ public class UserController {
     private UserDbService service;
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "/users")
+    @RequestMapping(method = RequestMethod.GET)
     public List<UserDto> getUsers() {
         return userMapper.mapToUserDtoList(service.getUsers());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/users/getByName/{userFirstname}")
+    @RequestMapping(method = RequestMethod.GET, value = "/name/{userFirstname}")
     public List<UserDto> getUsersByFirstname(@PathVariable String userFirstname) {
         return userMapper.mapToUserDtoList(service.getUsersByFirstname(userFirstname));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/users/getById/{userId}")
+    @RequestMapping(method = RequestMethod.GET, value = "/id/{userId}")
     public UserDto getUser(@PathVariable Long userId) throws NotFoundException {
        return userMapper.mapToUserDto(service.getUser(userId).orElseThrow(NotFoundException::new));
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/users/{userId}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{userId}")
     public void deleteUser(@PathVariable Long userId) {
         service.deleteUser(userId);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/users")
+    @RequestMapping(method = RequestMethod.PUT)
     public UserDto updateUser(@RequestBody UserDto userDto) {
         return userMapper.mapToUserDto(service.saveUser(userMapper.mapToUser(userDto)));
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/users", consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, consumes = APPLICATION_JSON_VALUE)
     public void createUser(@RequestBody UserDto userDto) {
         service.saveUser(userMapper.mapToUser(userDto));
     }

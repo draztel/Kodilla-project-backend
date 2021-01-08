@@ -13,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Setter
 @Entity
 @Table(name = "MOVIES")
 public class Movie {
@@ -32,10 +31,4 @@ public class Movie {
 
     @Column(name = "MOVIE_AUTHOR")
     private String author;
-
-    public Movie(String name, String description, String author) {
-        this.name = name;
-        this.description = description;
-        this.author = author;
-    }
 }

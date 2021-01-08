@@ -13,7 +13,6 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Setter
 @Entity
 @Table(name = "GAMES")
 public class Game {
@@ -31,10 +30,4 @@ public class Game {
 
     @Column(name = "GAME_PRICE")
     private double price;
-
-    public Game(String name, String description, double price) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-    }
 }

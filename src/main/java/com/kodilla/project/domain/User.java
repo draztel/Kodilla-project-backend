@@ -10,7 +10,6 @@ import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
 @Getter
 @Entity
 @Table(name = "USERS")
@@ -28,9 +27,4 @@ public class User {
     @NotNull
     @Column(name = "USER_LASTNAME")
     private String lastname;
-
-    public User(String firstname, String lastname) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-    }
 }

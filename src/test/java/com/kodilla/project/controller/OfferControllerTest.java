@@ -4,14 +4,9 @@ import com.kodilla.project.domain.Offer;
 import com.kodilla.project.domain.dto.OfferDto;
 import com.kodilla.project.mapper.OfferMapper;
 import com.kodilla.project.service.OfferDbService;
-import org.hamcrest.Matchers;
 import com.google.gson.Gson;
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.invocation.Invocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -64,9 +59,28 @@ public class OfferControllerTest {
         when(mapper.mapToOfferDtoList(offerList)).thenReturn(offerDtoList);
 
         //when & then
-        mockMvc.perform(get("/v1/offers"))
+        mockMvc.perform(get("/v1/offer"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.size()", is(2)));
+    }
+
+    @Test
+    public void shouldGetOffersByName() throws Exception {
+        //Given
+        List<OfferDto> offerDtoList = new ArrayList<>();
+        final OfferDto offerDto1 = new OfferDto(1l, "name", "description", 100.00);
+        final OfferDto offerDto2 = new OfferDto(1l, "name", "description", 100.00);
+        offerDtoList.add(offerDto1);
+        offerDtoList.add(offerDto2);
+
+        List<Offer> offerList = new ArrayList<>();
+        final Offer offer1 = new Offer(1l, "name", "description", 100.00);
+        final Offer offer2 = new Offer(1l, "name", "description", 100.00);
+        offerList.add(offer1);
+        offerList.add(offer2);
+
+        when(service.getOffersByName(anyString())).thenReturn(offerList);
+        when(mapper.mapToOfferDtoList(offerList)).thenReturn(offerDtoList);
     }
 
     @Test
@@ -79,7 +93,7 @@ public class OfferControllerTest {
         when(mapper.mapToOfferDto(offer)).thenReturn(offerDto);
 
         //when & then
-        mockMvc.perform(get("/v1/offers/getById/1")
+        mockMvc.perform(get("/v1/offer/id/1")
         .contentType(MediaType.APPLICATION_JSON)
         .characterEncoding("UTF-8"))
                 .andExpect(status().isOk())
@@ -93,7 +107,7 @@ public class OfferControllerTest {
     public void shouldDeleteOffer() throws Exception {
         //given
         //when & then
-        mockMvc.perform(delete("/v1/offers/1"))
+        mockMvc.perform(delete("/v1/offer/1"))
                 .andExpect(status().isOk());
     }
 
@@ -110,7 +124,7 @@ public class OfferControllerTest {
         String jsonContent = gson.toJson(offerDto);
 
         //then & when
-        mockMvc.perform(post("/v1/offers")
+        mockMvc.perform(post("/v1/offer")
         .contentType(MediaType.APPLICATION_JSON)
         .characterEncoding("UTF-8")
         .content(jsonContent))
@@ -131,7 +145,7 @@ public class OfferControllerTest {
         String jsonContent = gson.toJson(offerDto);
 
         //then & when
-        mockMvc.perform(put("/v1/offers")
+        mockMvc.perform(put("/v1/offer")
         .contentType(MediaType.APPLICATION_JSON)
         .characterEncoding("UTF-8")
         .content(jsonContent))

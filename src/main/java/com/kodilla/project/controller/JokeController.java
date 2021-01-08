@@ -12,13 +12,13 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/v1")
+@RequestMapping("/v1/joke")
 public class JokeController {
 
     @Autowired
     private JokeClient jokeClient;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/random_joke")
+    @RequestMapping(method = RequestMethod.GET, value = "/random")
     public JokeDto getJoke() {
         return jokeClient.getRandomJoke();
     }

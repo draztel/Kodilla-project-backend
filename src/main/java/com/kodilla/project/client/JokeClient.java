@@ -3,14 +3,9 @@ package com.kodilla.project.client;
 import com.kodilla.project.config.JokeConfiguration;
 import com.kodilla.project.domain.dto.JokeDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-import sun.net.www.http.HttpClient;
 
 import java.net.URI;
 import java.util.Arrays;

@@ -5,7 +5,7 @@ import com.kodilla.project.domain.User;
 import com.kodilla.project.domain.dto.UserDto;
 import com.kodilla.project.mapper.UserMapper;
 import com.kodilla.project.service.UserDbService;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -55,7 +55,32 @@ public class UserControllerTest {
         when(mapper.mapToUserDtoList(userList)).thenReturn(userDtoList);
 
         //when & then
-        mockMvc.perform(get("/v1/users"))
+        mockMvc.perform(get("/v1/user"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.size()", is(2)));
+    }
+
+    @Test
+    public void shouldGetUsersByFirstname() throws Exception {
+        //given
+        List<UserDto> userDtoList = new ArrayList<>();
+        final UserDto userDto1 = new UserDto(1l, "firstname", "lastname");
+        final UserDto userDto2 = new UserDto(1l, "firstname", "lastname");
+        userDtoList.add(userDto1);
+        userDtoList.add(userDto2);
+
+        List<User> userList = new ArrayList<>();
+        final User user1 = new User(1l, "firstname", "lastname");
+        final User user2 = new User(1l, "firstname", "lastname");
+        userList.add(user1);
+        userList.add(user2);
+
+        //when
+        when(service.getUsersByFirstname(anyString())).thenReturn(userList);
+        when(mapper.mapToUserDtoList(userList)).thenReturn(userDtoList);
+
+        //then
+        mockMvc.perform(get("/v1/user/name/name"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.size()", is(2)));
     }
@@ -70,7 +95,7 @@ public class UserControllerTest {
         when(mapper.mapToUserDto(user)).thenReturn(userDto);
 
         //then & when
-        mockMvc.perform(get("/v1/users/getById/1")
+        mockMvc.perform(get("/v1/user/id/1")
         .contentType(MediaType.APPLICATION_JSON)
         .characterEncoding("UTF-8"))
                 .andExpect(status().isOk())
@@ -83,7 +108,7 @@ public class UserControllerTest {
     public void shouldDeleteUser() throws Exception {
         //given
         //when & then
-        mockMvc.perform(delete("/v1/users/1"))
+        mockMvc.perform(delete("/v1/user/1"))
                 .andExpect(status().isOk());
     }
 
@@ -100,7 +125,7 @@ public class UserControllerTest {
         String jsonContent = gson.toJson(userDto);
 
         //when & then
-        mockMvc.perform(post("/v1/users")
+        mockMvc.perform(post("/v1/user")
         .contentType(MediaType.APPLICATION_JSON)
         .characterEncoding("UTF-8")
         .content(jsonContent))
@@ -121,7 +146,7 @@ public class UserControllerTest {
         String jsonContent = gson.toJson(userDto);
 
         //when & then
-        mockMvc.perform(post("/v1/users")
+        mockMvc.perform(post("/v1/user")
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
