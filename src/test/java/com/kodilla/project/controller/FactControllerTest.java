@@ -1,5 +1,6 @@
 package com.kodilla.project.controller;
 
+import com.kodilla.project.client.FactClient;
 import com.kodilla.project.domain.dto.FactDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +25,7 @@ public class FactControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private FactController controller;
+    private FactClient client;
 
     @Test
     public void shouldGetRandomFact() throws Exception {
@@ -32,7 +33,7 @@ public class FactControllerTest {
         FactDto factDto = new FactDto("text");
 
         //when
-        when(controller.getRandomFact()).thenReturn(factDto);
+        when(client.getRandomFact()).thenReturn(factDto);
 
         //then
         mockMvc.perform(get("/v1/fact/random"))

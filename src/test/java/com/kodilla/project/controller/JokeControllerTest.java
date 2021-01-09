@@ -1,5 +1,6 @@
 package com.kodilla.project.controller;
 
+import com.kodilla.project.client.JokeClient;
 import com.kodilla.project.domain.dto.JokeDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,7 +30,7 @@ public class JokeControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private JokeController controller;
+    private JokeClient client;
 
     @Test
     public void shouldGetRandomJoke() throws Exception {
@@ -37,7 +38,7 @@ public class JokeControllerTest {
         JokeDto jokeDto = new JokeDto("id", "type", "setup", "punchline");
 
         //when
-        when(controller.getJoke()).thenReturn(jokeDto);
+        when(client.getRandomJoke()).thenReturn(jokeDto);
 
         //then
         mockMvc.perform(get("/v1/joke/random"))
@@ -70,7 +71,7 @@ public class JokeControllerTest {
         jokeDtoList.add(jokeDto10);
 
         //when
-        when(controller.getTenJokes()).thenReturn(jokeDtoList);
+        when(client.getRandomTenJokes()).thenReturn(jokeDtoList);
 
         //then
         mockMvc.perform(get("/v1/joke/random_ten"))
