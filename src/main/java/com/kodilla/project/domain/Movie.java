@@ -19,8 +19,7 @@ public class Movie {
     @Column(name = "MOVIE_ID")
     private Long id;
 
-    @NotNull
-    @Column(name = "MOVIE_NAME", unique = true)
+    @Column(name = "MOVIE_NAME", unique = true, nullable = false)
     private String name;
 
     @Column(name = "MOVIE_DESCRIPTION")

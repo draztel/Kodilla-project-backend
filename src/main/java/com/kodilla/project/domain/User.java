@@ -19,11 +19,9 @@ public class User {
     @Column(name = "USER_ID")
     private Long id;
 
-    @NotNull
-    @Column(name = "USER_FIRSTNAME")
+    @Column(name = "USER_FIRSTNAME", nullable = false)
     private String firstname;
 
-    @NotNull
     @Column(name = "USER_LASTNAME")
     private String lastname;
 }

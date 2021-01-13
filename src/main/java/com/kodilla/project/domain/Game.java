@@ -1,11 +1,9 @@
 package com.kodilla.project.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -22,8 +20,7 @@ public class Game {
     @Column(name = "GAME_ID")
     private Long id;
 
-    @NotNull
-    @Column(name = "GAME_NAME", unique = true)
+    @Column(name = "GAME_NAME", unique = true, nullable = false)
     private String name;
 
     @Column(name = "GAME_DESCRIPTION")

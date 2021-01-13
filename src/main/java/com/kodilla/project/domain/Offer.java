@@ -19,8 +19,7 @@ public class Offer {
     @Column(name = "OFFER_ID")
     private Long id;
 
-    @NotNull
-    @Column(name = "OFFER_NAME", unique = true)
+    @Column(name = "OFFER_NAME", unique = true, nullable = false)
     private String name;
 
     @Column(name = "OFFER_DESCRIPTION")
