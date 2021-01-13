@@ -4,6 +4,7 @@ import com.kodilla.project.domain.Offer;
 import com.kodilla.project.repository.OfferDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,11 +29,14 @@ public class OfferDbService {
 
     public Offer saveOffer(final Offer offer) {
             return offerDao.save(new Offer.Builder()
-            .id(offer.getId())
             .name(offer.getName())
             .description(offer.getDescription())
             .price(offer.getPrice())
             .build());
+    }
+
+    public Offer updateOffer(final Offer offer) {
+        return offerDao.save(offer);
     }
 
     public void deleteOffer(final Long id) {

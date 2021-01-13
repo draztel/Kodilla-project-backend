@@ -1,9 +1,9 @@
 package com.kodilla.project.domain;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -19,6 +19,7 @@ public class Offer {
     @Column(name = "OFFER_ID")
     private Long id;
 
+    @NotNull
     @Column(name = "OFFER_NAME", unique = true)
     private String name;
 
@@ -29,15 +30,9 @@ public class Offer {
     private double price;
 
     public static final class Builder {
-        private Long id;
         private String name;
         private String description;
         private double price;
-
-        public Builder id(Long id) {
-            this.id = id;
-            return this;
-        }
 
         public Builder name(String name) {
             this.name = name;
@@ -56,7 +51,6 @@ public class Offer {
 
         public Offer build() {
             Offer offer = new Offer();
-            offer.id = this.id;
             offer.name = this.name;
             offer.description = this.description;
             offer.price = this.price;

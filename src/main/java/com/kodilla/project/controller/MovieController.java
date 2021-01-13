@@ -15,6 +15,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping("/v1/movie")
 public class MovieController {
+
     @Autowired
     private MovieDbService service;
 

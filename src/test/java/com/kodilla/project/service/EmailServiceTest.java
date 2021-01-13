@@ -36,5 +36,4 @@ public class EmailServiceTest {
         //Then
         verify(javaMailSender, times(1)).send(mailMessage);
     }
-
 }

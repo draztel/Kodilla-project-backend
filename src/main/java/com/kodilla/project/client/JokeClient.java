@@ -24,14 +24,12 @@ public class JokeClient {
     public JokeDto getRandomJoke() {
         URI url = UriComponentsBuilder.fromHttpUrl(jokeConfiguration.getJokeApiEndpoint() + "/random_joke")
                 .build().encode().toUri();
-
         return restTemplate.getForObject(url, JokeDto.class);
     }
 
     public List<JokeDto> getRandomTenJokes() {
         URI url = UriComponentsBuilder.fromHttpUrl(jokeConfiguration.getJokeApiEndpoint() + "/random_ten")
                 .build().encode().toUri();
-
         JokeDto[] jokesResponse = restTemplate.getForObject(url, JokeDto[].class);
         return Arrays.asList(Optional.ofNullable(jokesResponse).orElse(new JokeDto[0]));
     }

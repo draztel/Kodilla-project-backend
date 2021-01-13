@@ -1,8 +1,6 @@
 package com.kodilla.project.mapper;
 
-import com.kodilla.project.domain.Game;
 import com.kodilla.project.domain.User;
-import com.kodilla.project.domain.dto.GameDto;
 import com.kodilla.project.domain.dto.UserDto;
 import org.junit.Assert;
 import org.junit.Test;

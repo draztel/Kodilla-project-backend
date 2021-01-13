@@ -9,12 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/v1/game")
 public class GameController {
+
     @Autowired
     private GameMapper gameMapper;
 
@@ -46,7 +45,7 @@ public class GameController {
         return gameMapper.mapToGameDto(service.saveGame(gameMapper.mapToGame(gameDto)));
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST)
     public void createGame(@RequestBody GameDto gameDto) {
         service.saveGame(gameMapper.mapToGame(gameDto));
     }

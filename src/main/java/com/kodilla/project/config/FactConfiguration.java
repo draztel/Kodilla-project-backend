@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 @Getter
 @Component
 public class FactConfiguration {
+
     @Value("${fact.api.endpoint}")
     private String factApiEndpoint;
 

@@ -5,6 +5,7 @@ import com.kodilla.project.exception.NotFoundException;
 import com.kodilla.project.mapper.OfferMapper;
 import com.kodilla.project.service.OfferDbService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping("/v1/offer")
 public class OfferController {
+
     @Autowired
     private OfferDbService offerDbService;
 
@@ -43,7 +45,7 @@ public class OfferController {
 
     @RequestMapping(method = RequestMethod.PUT)
     public OfferDto updateOffer(@RequestBody OfferDto offerDto) {
-        return offerMapper.mapToOfferDto(offerDbService.saveOffer(offerMapper.mapToOffer(offerDto)));
+        return offerMapper.mapToOfferDto(offerDbService.updateOffer(offerMapper.mapToOffer(offerDto)));
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = APPLICATION_JSON_VALUE)

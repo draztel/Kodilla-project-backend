@@ -1,14 +1,14 @@
 package com.kodilla.project.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Date;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,6 +22,7 @@ public class Game {
     @Column(name = "GAME_ID")
     private Long id;
 
+    @NotNull
     @Column(name = "GAME_NAME", unique = true)
     private String name;
 
