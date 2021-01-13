@@ -1,6 +1,8 @@
 # Kodilla-project-backend
 
-front end = https://github.com/draztel/Kodilla-project-frontend/tree/ae005d2c94b1fd2915d738cc6972014b25c1cfb9
+frontend = https://github.com/draztel/Kodilla-project-frontend
+
+backend port = 8080
 
 To fully use the application you need to have:
 1. MySQL database installed
